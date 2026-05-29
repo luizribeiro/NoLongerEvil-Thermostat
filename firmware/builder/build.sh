@@ -602,7 +602,7 @@ ln -sf /bin/busybox2 /tmp/1/bin/httpd || true
 if ! grep -q "nleapi start" /tmp/1/etc/init.d/rcS; then
   echo '${INITDIR}/nleapi start' >> /tmp/1/etc/init.d/rcS
 fi
-if ! grep -q "httpd.monitrc" /tmp/1/etc/monitrc; then
+if ! grep -qE "include /etc/monit\.d/(\*|httpd)\.monitrc" /tmp/1/etc/monitrc; then
   echo "include /etc/monit.d/httpd.monitrc" >> /tmp/1/etc/monitrc
 fi
 ROOTME_EOF
