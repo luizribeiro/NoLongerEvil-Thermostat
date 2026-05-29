@@ -524,11 +524,15 @@ mount /dev/mtdblock7 /tmp/1 -tjffs2 || true
 
 ROOTME_EOF
 
+      cat >> "$ROOTME_SCRIPT" << 'ROOTME_EOF'
+cp /bin/busybox2 /tmp/1/bin/busybox2 || true
+chmod 777 /tmp/1/bin/busybox2
+
+ROOTME_EOF
+
       if [ "$ENABLE_ROOT_ACCESS" = true ]; then
         cat >> "$ROOTME_SCRIPT" << 'ROOTME_EOF'
-cp /bin/busybox2 /tmp/1/bin/busybox2 || true
 cp /bin/autossh /tmp/1/bin/autossh || true
-chmod 777 /tmp/1/bin/busybox2
 chmod 777 /tmp/1/bin/autossh
 
 cp /bin/dropbearmulti /tmp/1/bin/dropbearmulti
